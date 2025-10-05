@@ -6,3 +6,8 @@ __pycache__/
 # Pastas de ambiente virtual
 venv/
 .venv/
+
+# Arquivos e pastas gerados pelo PyInstaller
+/dist/
+/build/
+*.spec
