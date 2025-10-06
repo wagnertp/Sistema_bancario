@@ -1,4 +1,6 @@
 #vamos criar um sistema bancário com opçoes de depósito, saque e extrato.
+import time
+
 menu = """
 ===========================
     BANCO WAGNOPLA
@@ -37,7 +39,17 @@ while True:
                 print("\nOperação falhou! Por favor, informe um valor numérico.")
   
     elif opcao == "s":
-        print("Saque")
+        if numero_saques >= LIMITE_SAQUES:
+            print("\nOperação falhou! Número máximo de saques diários excedido.")
+            continue
+
+        print("\n================== SAQUE ==================")
+        saque_restante = LIMITE_SAQUES - numero_saques
+        print(f"Seu saldo atual é de R$ {saldo:.2f}")
+        print(f"O limite de valor por saque é de R$ {limite:.2f}")
+        print(f"Você ainda pode realizar {saque_restante} saque(s) hoje.")
+        print("=========================================")
+
         try:
             valor = float(input(f"O seu saldo é de R$ {saldo:.2f}\n Informe o valor do saque: "))
 
@@ -76,7 +88,12 @@ while True:
             print("==========================================")
     
     elif opcao == "q":
-        print("Obrigado por usar o Banco Wagnopla. Volte sempre!\n")
+        print("==========================================")
+        print("\nObrigado por usar o Banco Wagnopla. Volte sempre!\n")
+        print("Encerrando o sistema em 5 segundos", end="")
+        for _ in range(5):
+            print(".", end="", flush=True)
+            time.sleep(0.5)
         break
 
     else:
